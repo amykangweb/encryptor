@@ -1,4 +1,5 @@
 <!-- http://www.w3schools.com/js/js_htmldom_events.asp -->
+<!-- http://stackoverflow.com/questions/11563638/javascript-get-input-text-value -->
 <html>
   <head>
     <meta charset="UTF-8">
@@ -8,17 +9,21 @@
     <h1>Message Encoder</h1>
     <p>This simple page lets you securely encrypt a message with a password. Your message will not leave your computer, and will not be sent over the Internet.</p>
     <p>Once it's encoded, you'll be able to share your message with anyone else who has the password.</p>
-    <textarea id="message" rows="6" cols="60" onclick="encoder.getPassword()"></textarea>
+    <textarea id="message" rows="6" cols="60"></textarea>
     <br>
-    <button id="encrypt" onclick="encoder.replaceMessageWithUrl()">Lock Down</button>
+    <button id="encrypt" onclick="encoder.setMessage(); encoder.getPassword();">Lock Down</button>
 
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
 
     <script>
       var encoder = {
+        property: function () {
+          this.message = null;
+          this.password = null;
+        },
         setMessage: function() {
-          var msgForm = document.getElementById('message');
-          msgForm.value = "Hi!";
+          var msg = document.getElementById('message').value;
+          this.message = msg;
         },
         getPassword: function() {
           var password = prompt("Please enter your password.");
@@ -29,14 +34,17 @@
               password = prompt("Please enter your password.");
             }
           }
+          this.password = password;
           this.setUrl();
         },
         setUrl: function() {
-          alert("set url");
+          var url = this.encrypt().toString();
+          this.replaceMessageWithUrl(url);
         },
-        replaceMessageWithUrl: function () {
+        replaceMessageWithUrl: function (url) {
           var msgForm = document.getElementById('message');
-          msgForm.value = "Hello World!";
+          msgForm.value = "Your encrypted message is available to anyone with the passphrase at:\n";
+          msgForm.value += "\n" + "http://localhost:4000/decode.html?" + url;
         },
         encrypt: function() {
           cypher = CryptoJS.AES.encrypt(this.message, this.password)
@@ -51,7 +59,6 @@
           this.replaceMessageWithUrl()
         }
       }
-      encoder.setMessage();
     </script>
   </body>
 </html>
