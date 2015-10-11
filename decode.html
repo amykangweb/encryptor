@@ -1,0 +1,17 @@
+<!-- http://stackoverflow.com/questions/979975/how-to-get-the-value-from-the-url-parameter -->
+<!-- http://stackoverflow.com/questions/16600509/aes-encrypt-in-cryptojs-and-decrypt-in-coldfusion -->
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Message Decoder</title>
+  </head>
+  <body>
+    <h1>Message Decoder</h1>
+    <p>This URL contains a securely encrypted method.</p>
+    <p>Are you ready to enter your pass phrase?</p>
+    <button id="decrypt" onclick="decoder.getPassword();">Lock Down</button>
+
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+    <script src="lib/decoder.js"></script>
+  </body>
+</html>
