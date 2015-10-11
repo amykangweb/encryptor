@@ -2,8 +2,9 @@
 
 <h2>Description</h2>
 
-As a secret-keeper, I want to encrypt messages with a passphrase, so that I can securely send secret messages.
+A simple application that takes a message and encrypts it with a password. A URL is generated where the user can retrieve the message with their password.
 
-As a secret-keeper, I want the encrypted messages embedded in a URL, so that I can post links publicly where someone with the pass phrase can decrypt them.
+<h2>Resources</h2>
 
-As a passphrase knower, I want to click a link that has a secret message in it, so that I can enter the pass-phrase and read the message.
+https://github.com/brookr/encryptor<br>
+https://www.dropbox.com/s/n77w99qqfr69kph/SecretSauceAppDemo.mov
